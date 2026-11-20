@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prospecção por Sinais — prospecção B2B com Claude Code e Clay</title>
+<meta name="description" content="Kit e guia para prospectar empresas pelo sinal certo: Claude Code orquestra, Clay traz os dados, você revisa. Com modelos de contexto, prompts, sinais.yaml e checklist de LGPD.">
+<meta property="og:title" content="Prospecção por Sinais — INEMA.CLUB">
+<meta property="og:description" content="Só aborde quem está pronto para comprar: prospecção B2B por sinal com Claude Code e Clay.">
+<meta property="og:image" content="https://inematds.github.io/prospeccao-por-sinais/capa/capa.png">
+<link rel="alter&#110;ate" hreflang="pt-BR" href="https://inematds.github.io/prospeccao-por-sinais/guia/">
+<link rel="alter&#110;ate" hreflang="en" href="https://inematds.github.io/prospeccao-por-sinais/guia/en/">
+<link rel="alter&#110;ate" hreflang="es" href="https://inematds.github.io/prospeccao-por-sinais/guia/es/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#FACC15; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#a16207; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  body.light pre .k{color:#f0c070}
+  body.light .btn{background:#FACC15}
+  body.light .step .b{background:#FACC15}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  body.light nav{background:rgba(246,247,249,.85)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(250,204,21,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:900px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(250,204,21,.18),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .card ul{color:var(--mut);font-size:.92rem;margin:.4em 0 0;padding-left:1.1em}
+  .card li{margin:.25em 0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(250,204,21,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0;white-space:pre-wrap;overflow-wrap:anywhere}
+  pre .c{color:#8a8a98} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .who{display:inline-block;font-size:.78rem;font-family:Sora;font-weight:600;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:.1em .7em;margin-left:.4em;vertical-align:middle}
+  .tbl{width:100%;border-collapse:collapse;font-size:.92rem}
+  .tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  .tbl th{font-family:Sora;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+  .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  .note{border-left:3px solid var(--amb);background:var(--bg2);padding:14px 16px;border-radius:0 12px 12px 0;color:var(--txt);font-size:.95rem;margin-top:22px}
+  body.light .note{border-left-color:#EAB308;background:#FEF9C3}
+  .note a,.src a{text-decoration:underline}
+  body.light a{color:#854d0e}
+  body.light .note a, body.light .src a{text-decoration-color:#FACC15;text-decoration-thickness:3px}
+  .src{font-size:.85rem;color:var(--mut);margin-top:14px}
+  .bad{color:#f0918a;font-family:Sora;font-weight:600}
+  body.light .bad{color:#a83426}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px 6px}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">📡</span> Prospecção por Sinais</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#fluxo">Como funciona</a>
+    <a class="sec" href="#guia">Guia de uso</a>
+    <a class="sec" href="#custos">Custos</a>
+    <a class="sec" href="#brasil">Brasil</a>
+    <a class="sec" href="#kit">Kit</a>
+    <span class="lang"><a class="on" href="./">PT</a><a href="en/">EN</a><a href="es/">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">🌙</button>
+    <a class="btn" href="https://github.com/inematds/prospeccao-por-sinais" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Kit + guia · vendas B2B com IA</span>
+      <h1>Só aborde quem está <span class="amb">pronto</span> para comprar</h1>
+      <p class="lead">Prospecção B2B que começa por um motivo real: o Claude Code orquestra, o Clay traz os dados e você revisa antes de enviar.</p>
+      <div class="cta">
+        <a class="btn" href="#guia">Começar o guia</a>
+        <a class="btn ghost" href="#kit">Baixar o kit</a>
+      </div>
+    </div>
+    <figure><img src="assets/banner.jpg" alt="Banner: Prospecção por Sinais — só aborde quem está pronto para comprar"></figure>
+  </div>
+</header>
+
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">Em resumo</span>
+  <p>Este é um kit gratuito para quem vende para empresas e quer prospectar sem disparar e-mail para lista fria. A ideia é procurar <strong>sinais</strong>, ou seja, acontecimentos públicos que mostram que uma empresa pode precisar de você agora (uma vaga aberta, um produto lançado, um diretor novo), e só então achar a pessoa que decide e escrever uma mensagem que cita esse sinal. O Claude Code faz o trabalho pesado usando o Clay (uma plataforma de dados de empresas e contatos) e entrega uma planilha para você revisar. Você precisa do Claude Code, de uma conta no Clay (tem plano grátis e teste) e de uma tarde para preencher o contexto do seu negócio.</p>
+</div></section>
+
+<section id="oque"><div class="wrap">
+  <span class="chip">O problema e a ideia</span>
+  <h2>Lista fria cansa todo mundo. Sinal abre conversa.</h2>
+  <p class="sub">A prospecção comum compra uma lista, manda o mesmo texto para todos e torce. Quase ninguém responde, o domínio cai no spam e a marca fica com fama de chata.</p>
+  <figure style="margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="assets/banner-grade.jpg" alt="Banner com os rótulos do fluxo: ICP, sinal, decisor, cascata, mensagem e revisão" loading="lazy" style="width:100%;display:block"></figure>
+  <div class="grid g3">
+    <div class="card"><h3>🧊 O problema</h3><p>Lista fria sem contexto, mensagem genérica feita por IA, dezenas de abas e ferramentas, e e-mail que vai direto para o spam.</p></div>
+    <div class="card"><h3>📡 A ideia</h3><p>Prospectar por sinal: primeiro descobrir <em>quem tem um motivo para conversar agora</em>, depois achar a pessoa certa e falar desse motivo.</p></div>
+    <div class="card"><h3>🧠 A divisão de trabalho</h3><p>O Clay resolve o problema dos dados (empresas, vagas, e-mails). O Claude Code resolve o problema das ferramentas: você pede em português e ele opera. Você revisa e decide.</p></div>
+  </div>
+</div></section>
+
+<section id="fluxo"><div class="wrap">
+  <span class="chip">Como funciona</span>
+  <h2>Os 7 passos do fluxo</h2>
+  <p class="sub">Cada passo filtra o anterior. O crédito caro (pessoa, e-mail) só é gasto nas empresas que passaram pelo sinal.</p>
+  <div class="flow">
+    <span>1 · ICP</span><span class="arr">→</span>
+    <span>2 · Sinal de contratação</span><span class="arr">→</span>
+    <span>3 · Agente de pesquisa</span><span class="arr">→</span>
+    <span>4 · Decisor</span><span class="arr">→</span>
+    <span>5 · Cascata</span><span class="arr">→</span>
+    <span>6 · Mensagem</span><span class="arr">→</span>
+    <span>7 · Revisão + envio</span>
+  </div>
+  <div class="grid g3" style="margin-top:26px">
+    <div class="card"><div class="num">1</div><h3>ICP: a lista de empresas</h3><p>ICP é o perfil de cliente ideal. Você define setor, tamanho e país; o Clay devolve as empresas que se encaixam.</p></div>
+    <div class="card"><div class="num">2</div><h3>Sinal de contratação</h3><p>O Clay monitora vagas abertas com os cargos que importam para você. Vaga de IA, por exemplo, indica projeto de IA começando.</p></div>
+    <div class="card"><div class="num">3</div><h3>Agente de pesquisa</h3><p>Uma coluna com agente de IA lê site, blog e notícias e responde, com link: a empresa lançou produto novo nos últimos meses?</p></div>
+    <div class="card"><div class="num">4</div><h3>Decisor só onde há sinal</h3><p>A busca de pessoas tem uma <strong>condição de execução</strong>: só roda em empresa com sinal. É aqui que se economiza crédito.</p></div>
+    <div class="card"><div class="num">5</div><h3>Enriquecimento em cascata</h3><p>Vários fornecedores de e-mail em sequência; a cascata para no primeiro resultado válido. Depois, verificação do e-mail.</p></div>
+    <div class="card"><div class="num">6</div><h3>Mensagem com contexto</h3><p>O Claude Code lê os arquivos do seu negócio e escreve assunto e corpo citando o sinal daquela empresa, com pergunta simples e opção de sair.</p></div>
+    <div class="card"><div class="num">7</div><h3>Revisão humana + sequenciador</h3><p>Você revisa a planilha e só então importa no sequenciador, enviando de domínio aquecido e com poucos envios por dia.</p></div>
+  </div>
+  <h3 style="margin:34px 0 12px;font-size:1.15rem">Palavras que aparecem no guia</h3>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>Termo</th><th>O que quer dizer</th></tr>
+    <tr><td>Terminal</td><td>A janela de comandos do computador (Terminal no Mac e no Linux; PowerShell no Windows). O Claude Code roda nela.</td></tr>
+    <tr><td>Plugin, marketplace, skill</td><td>Plugin é um pacote que ensina o Claude Code a usar uma ferramenta; marketplace é o catálogo de onde ele vem; skill é uma receita pronta dentro dele (ex.: <code>clay:setup</code>).</td></tr>
+    <tr><td>Crédito e ação</td><td>As moedas do Clay: crédito paga dados de fornecedores (e-mail, empresa, pessoa); ação paga a execução das etapas.</td></tr>
+    <tr><td>Sinal</td><td>Acontecimento público que mostra um motivo para conversar agora (vaga, lançamento, diretor novo, investimento).</td></tr>
+    <tr><td>Cascata</td><td>Vários fornecedores de dados consultados em sequência, até um achar o dado.</td></tr>
+    <tr><td>CTA</td><td>A chamada para ação no fim da mensagem. Aqui, sempre leve: uma pergunta simples.</td></tr>
+    <tr><td>Opt-out</td><td>A opção de sair: uma linha dizendo como parar de receber mensagens.</td></tr>
+    <tr><td>Sequenciador</td><td>Ferramenta que envia os e-mails da campanha aos poucos e manda os lembretes (follow-ups). O Clay tem um; também existem ferramentas separadas para isso.</td></tr>
+    <tr><td>Domínio secundário aquecido</td><td>Um endereço parecido com o da empresa (ex.: <code>contato-suaempresa.com.br</code>) usado só para prospecção, que começa enviando pouco e vai aumentando, para os provedores de e-mail confiarem nele. Se der problema, o domínio principal fica protegido.</td></tr>
+  </table></div>
+</div></section>
+
+<section id="pre"><div class="wrap">
+  <span class="chip">Pré-requisitos</span>
+  <h2>O que você precisa antes</h2>
+  <p class="sub">Nenhuma exige programar. Você vai digitar alguns comandos no terminal (a janela de comandos do computador).</p>
+  <div class="grid g2">
+    <div class="card"><h3>Claude Code</h3><p>O assistente da Anthropic que roda no terminal. Precisa de uma assinatura paga do Claude (veja os planos em <a href="https://claude.com/pricing" target="_blank" rel="noopener">claude.com/pricing</a>). O plugin do Clay exige a versão 2.1.91 ou mais nova. Instale e confira:</p><pre><span class="c"># instalar (Mac/Linux)</span>
+<span class="k">curl -fsSL</span> <span class="s">https://claude.ai/install.sh</span> | bash
+<span class="c"># Windows (PowerShell)</span>
+<span class="k">irm</span> <span class="s">https://claude.ai/install.ps1</span> | iex
+<span class="c"># ou, se você já tem Node.js</span>
+<span class="k">npm install -g</span> @anthropic-ai/claude-code
+<span class="c"># conferir a versão</span>
+<span class="k">claude</span> --version</pre><p class="src">Documentação oficial: <a href="https://docs.claude.com/en/docs/claude-code/overview" target="_blank" rel="noopener">Claude Code</a>.</p></div>
+    <div class="card"><h3>Git e Node.js (opcionais)</h3><p>O <strong>git</strong> serve para baixar o kit com <code>git clone</code>; sem ele, baixe o .zip. O <strong>Node.js</strong> (que traz o <code>npx</code>) só é usado no passo opcional da skill de sinais.</p><pre><span class="c"># conferir se já estão instalados</span>
+<span class="k">git</span> --version
+<span class="k">node</span> --version</pre><p class="src">Downloads: <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git</a> · <a href="https://nodejs.org" target="_blank" rel="noopener">Node.js</a>.</p></div>
+    <div class="card"><h3>Conta no Clay</h3><p>Plano grátis (100 créditos/mês) ou teste de 14 dias (1.000 créditos). Dá para fazer o fluxo inteiro em escala pequena.</p><pre><span class="c"># crie a conta em</span>
+<span class="s">https://www.clay.com</span></pre></div>
+    <div class="card"><h3>Contexto do seu negócio</h3><p>Uma tarde para preencher os 6 arquivos de <code>kit/contexto/</code>. Sem isso, a mensagem sai genérica.</p><pre><span class="c"># modelos + exemplo fictício</span>
+kit/contexto/</pre></div>
+  </div>
+</div></section>
+
+<section id="guia"><div class="wrap">
+  <span class="chip">Guia de uso · passo a passo</span>
+  <h2>Do zero à planilha revisada</h2>
+  <p class="sub">Os comandos com <code>/</code> são digitados dentro do Claude Code. Os outros, no terminal.</p>
+
+  <div class="step"><div class="b">1</div><div>
+    <h3>Baixe o kit e abra o Claude Code na pasta <span class="who">🧠 você</span></h3>
+    <p>O kit vira a pasta do seu projeto de prospecção. O <code>CLAUDE.md</code> dele já diz ao Claude Code como se comportar (não gastar crédito sem pedir, rodar 10 linhas antes, nunca enviar nada).</p>
+<pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/prospeccao-por-sinais.git</span>
+<span class="k">cp -r</span> prospeccao-por-sinais/kit ~/minha-prospeccao
+<span class="k">cd</span> ~/minha-prospeccao
+<span class="k">claude</span></pre>
+    <p>Sem git: <a href="https://github.com/inematds/prospeccao-por-sinais/archive/refs/heads/main.zip">baixe o .zip</a>, descompacte, copie a pasta <code>kit</code> para onde quiser, abra o terminal nessa pasta e digite <code>claude</code>.</p>
+  </div></div>
+
+  <div class="step"><div class="b">2</div><div>
+    <h3>Instale o plugin oficial do Clay <span class="who">🧠 você</span></h3>
+    <p>Dentro do Claude Code, adicione o marketplace e instale o plugin. Depois peça para rodar a skill de configuração, que instala a linha de comando <code>clay</code> e faz o login.</p>
+<pre><span class="k">/plugin marketplace add</span> clay-run/agent-plugins
+<span class="k">/plugin install</span> clay@clay-plugins
+<span class="c"># depois, em português:</span>
+Rode a skill clay:setup e faça meu login no Clay.</pre>
+    <p>Usa o Codex? O equivalente é <code>codex plugin marketplace add clay-run/agent-plugins</code> e instalar o <em>clay</em> em Plugins.</p>
+  </div></div>
+
+  <div class="step"><div class="b">3</div><div>
+    <h3>Preencha o contexto do negócio <span class="who">🧠 você</span></h3>
+    <p>Abra os 6 modelos de <code>contexto/</code> (perfil, oferta, casos, provas, FAQ, tom de voz). Use a pasta <code>contexto/exemplo/</code> (empresa fictícia) como referência. O agente não pode afirmar nada que não esteja em <code>provas.md</code>. O exemplo vende para empresas de software; troque ICP, cargos e sinais pelos do seu mercado (para negócio local, veja a seção <a href="#brasil">Brasil</a>).</p>
+<pre><span class="c"># peça ajuda ao próprio Claude Code</span>
+Leia contexto/exemplo/ e me entreviste para preencher contexto/ com os dados da minha empresa.</pre>
+  </div></div>
+
+  <div class="step"><div class="b">4</div><div>
+    <h3>Defina os seus sinais <span class="who">🧠 você + 🤖 agente</span></h3>
+    <p>Edite <code>sinais.yaml</code>: cada sinal tem janela de validade em dias e peso. Se quiser ajuda para descobrir quais sinais importam no seu mercado, há uma skill pública de geração de sinais:</p>
+<pre><span class="c"># opcional, no terminal</span>
+<span class="k">npx skills add</span> clay-run/clay-skill-creator --skill customer-signal-generator</pre>
+  </div></div>
+
+  <div class="step"><div class="b">5</div><div>
+    <h3>Teste com 10 linhas <span class="who">🤖 agente · ⚙️ Clay</span></h3>
+    <p>Antes de qualquer lote, rode os passos 1 e 2 do fluxo em 10 empresas. Olhe quantas têm sinal e quantas pessoas viriam com e-mail verificado. Os prompts de cada passo estão em <code>prompts/passo-a-passo.md</code>.</p>
+<pre>Siga o Passo 1 e o Passo 2 de prompts/passo-a-passo.md em 10 empresas.
+Me mostre o resultado e o custo estimado antes de rodar mais.</pre>
+  </div></div>
+
+  <div class="step"><div class="b">6</div><div>
+    <h3>Rode o /goal com linha de chegada <span class="who">🤖 agente · ⚙️ Clay</span></h3>
+    <p>O <code>/goal</code> faz o Claude Code continuar até uma condição verificável ser verdadeira: N leads, colunas sem branco, e-mail verificado, assunto e corpo citando o sinal, CTA leve e CSV final. O prompt completo está em <code>prompts/goal-prospeccao.md</code>.</p>
+<pre><span class="k">/goal</span> Quero 25 leads novos de prospecção por sinal, prontos para revisão humana.
+... (copie o resto de prompts/goal-prospeccao.md)</pre>
+    <p>Mesmo dentro do <code>/goal</code>, o <code>CLAUDE.md</code> manda o agente parar e pedir seu "pode" antes de cada passo que gasta crédito. Se a sua versão do Claude Code não tiver o <code>/goal</code>, rode os prompts de <code>prompts/passo-a-passo.md</code> um de cada vez: o resultado é o mesmo.</p>
+  </div></div>
+
+  <div class="step"><div class="b">7</div><div>
+    <h3>Revise a planilha <span class="who">🧠 você</span></h3>
+    <p>Abra <code>saida/leads-AAAA-MM-DD.csv</code>. As colunas estão em <code>colunas-csv.md</code>. Comece pelas linhas com <code>revisar = sim</code>, leia cada mensagem e confira o link do sinal.</p>
+<pre><span class="c"># colunas principais</span>
+empresa, decisor, cargo, email, email_status, sinal, resumo_sinal,
+link_fonte_sinal, gancho, assunto, corpo, revisar</pre>
+  </div></div>
+
+  <div class="step"><div class="b">8</div><div>
+    <h3>Importe no sequenciador e envie devagar <span class="who">🧠 você · ⚙️ sequenciador</span></h3>
+    <p>O sequenciador é a ferramenta que envia a campanha aos poucos e manda os lembretes (veja <a href="#fluxo">Palavras que aparecem no guia</a>). No Clay: importar dados, CSV, nova tabela, e depois criar a campanha usando essa tabela como lista; ali também dá para comprar contas de envio. Envie de um domínio secundário já aquecido, com poucos envios por dia, e só aumente o volume aos poucos. Quem pedir para sair vai para <code>supressao.csv</code>.</p>
+<pre><span class="c"># regra prática</span>
+domínio secundário aquecido → poucos envios/dia → aumentar aos poucos
+taxa de spam abaixo de 0,3% (regra do Gmail para remetentes)</pre>
+    <p class="src">Gmail: <a href="https://support.google.com/a/answer/81126?hl=pt-BR" target="_blank" rel="noopener">diretrizes para remetentes de e-mail</a> (taxa de spam abaixo de 0,3% e aumento gradual de volume).</p>
+  </div></div>
+</div></section>
+
+<section id="custos"><div class="wrap">
+  <span class="chip">Custos</span>
+  <h2>Quanto custa começar</h2>
+  <p class="sub">Do lado do Clay, dá para aprender o fluxo inteiro sem pagar nada. O Claude Code, o orquestrador, precisa de uma assinatura paga do Claude (<a href="https://claude.com/pricing" target="_blank" rel="noopener">planos</a>). Os números abaixo são da documentação pública do Clay, conferidos em 01/11/2026. Preço muda: confira antes de assinar.</p>
+  <div class="grid g3">
+    <div class="card"><h3>Grátis</h3><p><strong>100 créditos por mês.</strong> Dá para testar algumas linhas em cada passo e ver, no próprio Clay, quanto cada passo gasta antes de crescer.</p></div>
+    <div class="card"><h3>Teste de 14 dias</h3><p><strong>1.000 créditos.</strong> Bom para rodar o primeiro lote pequeno de verdade.</p></div>
+    <div class="card"><h3>Plano Launch</h3><p><strong>A partir de US$ 185/mês</strong>, com 2.500 créditos e 15.000 ações. Só faz sentido quando o fluxo já provou que traz conversa.</p></div>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card"><h3>💡 Créditos que voltam</h3><p>Na cascata, os fornecedores padrão de e-mail e de celular <strong>devolvem o crédito quando não acham</strong> o dado. E a cascata para no primeiro resultado válido.</p></div>
+    <div class="card"><h3>📵 Celular fica de fora no começo</h3><p>Busca de celular <strong>não está disponível no plano grátis nem no teste</strong>. Comece só com e-mail.</p></div>
+  </div>
+  <p class="src">Fontes: <a href="https://github.com/clay-run/public-docs" target="_blank" rel="noopener">documentação pública do Clay</a> (planos e cobrança; como montar uma cascata de dados).</p>
+</div></section>
+
+<section id="economia"><div class="wrap">
+  <span class="chip">Economia de crédito</span>
+  <h2>A regra que mais economiza: condição de execução</h2>
+  <p class="sub">O que mais custa é buscar pessoa e e-mail. Então essa busca só roda onde vale a pena.</p>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>Etapa</th><th>Roda em</th><th>Por quê</th></tr>
+    <tr><td>Lista de empresas (ICP)</td><td>todas do filtro</td><td>é a base; teste com 10 antes</td></tr>
+    <tr><td>Sinal de contratação e agente de pesquisa</td><td>todas as empresas da lista</td><td>separa quem tem motivo para conversar agora</td></tr>
+    <tr><td>Busca de decisor</td><td><strong>só empresas com sinal</strong></td><td>empresa sem sinal não gasta crédito com pessoa</td></tr>
+    <tr><td>E-mail em cascata</td><td>só decisores encontrados</td><td>para no primeiro e-mail válido</td></tr>
+    <tr><td>Celular</td><td>só se você pedir</td><td>não sai no grátis/teste</td></tr>
+  </table></div>
+  <p class="note">"Empresa com sinal" tem uma definição só, a mesma no <code>CLAUDE.md</code>, nos prompts e no <code>sinais.yaml</code>: a soma dos pesos dos sinais ativos (dentro da janela de validade) é 30 ou mais. Ajuste esse número no <code>sinais.yaml</code> se quiser ser mais ou menos rigoroso.</p>
+</div></section>
+
+<section id="brasil"><div class="wrap">
+  <span class="chip">Brasil</span>
+  <h2>Usando no Brasil: LGPD e cobertura de dados</h2>
+  <p class="sub">O fluxo funciona aqui, com dois cuidados.</p>
+  <div class="grid g2">
+    <div class="card"><h3>⚖️ LGPD</h3><p>Prospecção B2B costuma se apoiar no legítimo interesse. Na prática:</p>
+      <ul>
+        <li>contato relevante para o cargo da pessoa;</li>
+        <li>identificação clara de quem escreve;</li>
+        <li>opção de sair fácil em toda mensagem;</li>
+        <li>lista de supressão respeitada sempre;</li>
+        <li>nenhum dado pessoal sensível;</li>
+        <li>origem de cada dado guardada.</li>
+      </ul>
+      <p style="margin-top:.6em">O kit traz <code>checklist-lgpd.md</code>. Não é parecer jurídico: confira com seu jurídico. Referências: <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank" rel="noopener">Lei 13.709/2018</a> e <a href="https://www.gov.br/anpd" target="_blank" rel="noopener">ANPD</a>.</p></div>
+    <div class="card"><h3>🗺️ Cobertura de dados varia por país</h3><p>As bases de dados têm cobertura diferente em cada país e setor. Por isso:</p>
+      <ul>
+        <li>teste sempre 10 linhas e veja quantas voltam com e-mail verificado;</li>
+        <li>se a base for fraca, peça ao agente para buscar no site da empresa (página de contato, equipe);</li>
+        <li>para pequena empresa local (clínica, loja, escritório), use o Google Maps e o site como fonte da lista.</li>
+      </ul></div>
+  </div>
+</div></section>
+
+<section id="erros"><div class="wrap">
+  <span class="chip">Erros comuns</span>
+  <h2>O que dá errado (e como evitar)</h2>
+  <p class="sub">Quase todos os problemas vêm de pular uma das regras do <code>CLAUDE.md</code>.</p>
+  <div class="grid g3">
+    <div class="card"><h3><span class="bad">✗</span> Rodar a tabela inteira de cara</h3><p>Gasta o crédito do mês em uma configuração errada. Sempre 10 linhas primeiro.</p></div>
+    <div class="card"><h3><span class="bad">✗</span> Buscar decisor em todas as empresas</h3><p>É o maior desperdício. Use a condição de execução: só onde há sinal.</p></div>
+    <div class="card"><h3><span class="bad">✗</span> Contexto vazio</h3><p>Sem perfil, casos e provas, a IA escreve mensagem genérica. Preencha <code>contexto/</code> antes.</p></div>
+    <div class="card"><h3><span class="bad">✗</span> Sinal sem fonte ou vencido</h3><p>Citar vaga que já fechou soa descuidado. Exija link e respeite a janela de cada sinal.</p></div>
+    <div class="card"><h3><span class="bad">✗</span> Enviar do domínio principal</h3><p>Se cair no spam, leva junto o e-mail da empresa. Use domínio secundário aquecido.</p></div>
+    <div class="card"><h3><span class="bad">✗</span> Volume alto no primeiro dia</h3><p>Poucos envios por dia, aumento gradual, taxa de spam abaixo de 0,3%.</p></div>
+  </div>
+</div></section>
+
+<section id="kit"><div class="wrap">
+  <span class="chip">Kit para baixar</span>
+  <h2>O que vem no kit</h2>
+  <p class="sub">Tudo em texto simples, para copiar para a pasta do seu projeto e editar.</p>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>Arquivo</th><th>Para que serve</th></tr>
+    <tr><td><code>CLAUDE.md</code></td><td>Regras do agente: não gastar crédito sem pedir, 10 linhas antes, condição de execução, revisão humana, opt-out, LGPD.</td></tr>
+    <tr><td><code>contexto/</code></td><td>6 modelos (perfil do negócio, oferta, casos, provas, FAQ, tom de voz) + <code>exemplo/</code> com uma empresa fictícia.</td></tr>
+    <tr><td><code>prompts/goal-prospeccao.md</code></td><td>Prompt para <code>/goal</code> com linha de chegada verificável.</td></tr>
+    <tr><td><code>prompts/passo-a-passo.md</code></td><td>Um prompt em português para cada um dos 7 passos.</td></tr>
+    <tr><td><code>sinais.yaml</code></td><td>Sinais de exemplo (contratação, lançamento, novo diretor, investimento, mudança de preço, expansão) com janela e peso.</td></tr>
+    <tr><td><code>colunas-csv.md</code></td><td>As colunas da planilha de saída e as regras de conferência.</td></tr>
+    <tr><td><code>checklist-lgpd.md</code></td><td>Checklist prático de LGPD para prospecção B2B.</td></tr>
+    <tr><td><code>supressao.csv</code></td><td>Lista de quem pediu para sair (começa vazia).</td></tr>
+  </table></div>
+  <div class="cta" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px">
+    <a class="btn" href="https://github.com/inematds/prospeccao-por-sinais/archive/refs/heads/main.zip">Baixar o kit (.zip)</a>
+    <a class="btn ghost" href="https://github.com/inematds/prospeccao-por-sinais/tree/main/kit" target="_blank" rel="noopener">Ver a pasta kit/ no GitHub</a>
+  </div>
+</div></section>
+
+<section id="videos"><div class="wrap">
+  <span class="chip">Vídeos</span>
+  <h2>Veja o fluxo explicado</h2>
+  <div style="position:relative;aspect-ratio:16/9;max-width:860px;margin:18px auto 10px;border-radius:14px;overflow:hidden;border:1px solid var(--line,#272730)"><iframe src="https://www.youtube-nocookie.com/embed/mLXPnDLAcRI" title="Prospecção por sinais" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div><p style="text-align:center">Os 7 passos em 2 min 48 s: do perfil ideal ao disparo, com Claude Code + Clay.<br><a href="https://www.instagram.com/inema.tds/">Versão curta (reel) no Instagram e no TikTok: @inema.tds</a></p>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Claude Code</div><div class="pill">Clay</div><div class="pill">CSV</div><div class="pill">LGPD</div>
+    <p style="margin-top:18px">Prospecção por Sinais · kit aberto e gratuito ·
+      <a href="https://github.com/inematds/prospeccao-por-sinais">inematds/prospeccao-por-sinais</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='prospeccao-por-sinais-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

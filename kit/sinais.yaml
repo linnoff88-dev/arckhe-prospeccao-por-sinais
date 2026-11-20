@@ -1,0 +1,74 @@
+# sinais.yaml — definição dos sinais de compra (exemplo editável)
+#
+# Sinal = evento público que indica que a empresa pode precisar de você AGORA.
+# Campos:
+#   id               identificador curto (sem espaço)
+#   nome             descrição legível
+#   categoria        contratacao | produto | lideranca | investimento | preco | expansao
+#   janela_dias      por quantos dias o sinal vale depois do evento (depois disso, "esfria")
+#   peso             0–40: quanto o sinal pesa na prioridade (some os pesos para ranquear contas)
+#   como_detectar    onde e como checar (no Clay ou fora dele)
+#   fonte_obrigatoria  a mensagem só pode citar o sinal se houver link da fonte
+#
+# Os valores abaixo são ponto de partida. Ajuste à sua oferta e teste em 10 empresas.
+
+sinais:
+  - id: contratacao_ia
+    nome: "Vaga aberta de engenheiro(a) de IA, automação ou machine learning"
+    categoria: contratacao
+    janela_dias: 45
+    peso: 30
+    como_detectar: "Monitor de vagas do Clay com os cargos/palavras da oferta; conferir data de publicação."
+    fonte_obrigatoria: true
+
+  - id: contratacao_suporte
+    nome: "Várias vagas de suporte/CS abertas ao mesmo tempo (3 ou mais)"
+    categoria: contratacao
+    janela_dias: 30
+    peso: 20
+    como_detectar: "Monitor de vagas; contar vagas com 'suporte', 'customer success', 'atendimento'."
+    fonte_obrigatoria: true
+
+  - id: lancamento_produto_ia
+    nome: "Lançou produto ou recurso de IA nos últimos 90 dias"
+    categoria: produto
+    janela_dias: 90
+    peso: 25
+    como_detectar: "Coluna de agente de IA pesquisando site, blog, página de novidades e notícias; exigir link."
+    fonte_obrigatoria: true
+
+  - id: novo_diretor
+    nome: "Novo(a) diretor(a) de operações, suporte/CS ou tecnologia"
+    categoria: lideranca
+    janela_dias: 120
+    peso: 25
+    como_detectar: "Busca de pessoas por cargo com data de início recente no cargo atual."
+    fonte_obrigatoria: true
+
+  - id: investimento_recente
+    nome: "Recebeu investimento (rodada) recentemente"
+    categoria: investimento
+    janela_dias: 180
+    peso: 20
+    como_detectar: "Dado de investimento da empresa no Clay ou notícia com link; citar só o fato, sem valores não confirmados."
+    fonte_obrigatoria: true
+
+  - id: mudanca_preco
+    nome: "Mudou a página de preços (novo plano, novo modelo de cobrança)"
+    categoria: preco
+    janela_dias: 60
+    peso: 15
+    como_detectar: "Agente de IA comparando a página de preços atual com versão anterior (arquivo/cache); exigir as duas datas."
+    fonte_obrigatoria: true
+
+  - id: expansao_regional
+    nome: "Abriu escritório ou operação em nova cidade/país"
+    categoria: expansao
+    janela_dias: 120
+    peso: 15
+    como_detectar: "Notícia, página 'sobre' ou vagas em cidade nova."
+    fonte_obrigatoria: true
+
+# Regra única de "empresa com sinal" (usada no CLAUDE.md e nos prompts):
+#   soma dos pesos dos sinais ativos >= 30  → buscar decisor
+#   soma < 30                               → não gastar crédito com pessoa; reavaliar no mês seguinte
