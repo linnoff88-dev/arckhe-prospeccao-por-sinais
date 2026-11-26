@@ -4,7 +4,7 @@
 
 ## Oferta principal
 - Nome:
-- O que entrega (resultado, não tarefa):
+- O que entrega (resultado, nêo tarefa):
 - Prazo típico:
 - Faixa de investimento (opcional; só se você costuma falar de preço no primeiro contato):
 
@@ -14,5 +14,5 @@
 ## Primeiro passo que oferecemos
 <!-- O CTA leve: conversa de 15 min, diagnóstico curto, exemplo gratuito... -->
 
-## O que não prometemos
+## O que nêo prometemos
 <!-- Evita que o agente invente resultado. -->

@@ -7,10 +7,10 @@
 
 ## Tratamento
 - você / o senhor / a senhora:
-- Primeiro nome no cumprimento? sim / não
+- Primeiro nome no cumprimento? sim / nêo
 
 ## Tamanho
-- Assunto: até 6 palavras, sem ponto de exclamação, sem caixa alta.
+- Assunto: até 6 palavras, sem ponto de exclamaçêo, sem caixa alta.
 - Corpo: até 90 palavras.
 
 ## Sempre

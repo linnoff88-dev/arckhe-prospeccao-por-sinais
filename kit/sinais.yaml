@@ -1,24 +1,24 @@
-# sinais.yaml — definição dos sinais de compra (exemplo editável)
+# sinais.yaml — definiçêo dos sinais de compra (exemplo editável)
 #
 # Sinal = evento público que indica que a empresa pode precisar de você AGORA.
 # Campos:
 #   id               identificador curto (sem espaço)
-#   nome             descrição legível
+#   nome             descriçêo legível
 #   categoria        contratacao | produto | lideranca | investimento | preco | expansao
 #   janela_dias      por quantos dias o sinal vale depois do evento (depois disso, "esfria")
 #   peso             0–40: quanto o sinal pesa na prioridade (some os pesos para ranquear contas)
 #   como_detectar    onde e como checar (no Clay ou fora dele)
 #   fonte_obrigatoria  a mensagem só pode citar o sinal se houver link da fonte
 #
-# Os valores abaixo são ponto de partida. Ajuste à sua oferta e teste em 10 empresas.
+# Os valores abaixo sêo ponto de partida. Ajuste à sua oferta e teste em 10 empresas.
 
 sinais:
   - id: contratacao_ia
-    nome: "Vaga aberta de engenheiro(a) de IA, automação ou machine learning"
+    nome: "Vaga aberta de engenheiro(a) de IA, automaçêo ou machine learning"
     categoria: contratacao
     janela_dias: 45
     peso: 30
-    como_detectar: "Monitor de vagas do Clay com os cargos/palavras da oferta; conferir data de publicação."
+    como_detectar: "Monitor de vagas do Clay com os cargos/palavras da oferta; conferir data de publicaçêo."
     fonte_obrigatoria: true
 
   - id: contratacao_suporte
@@ -50,7 +50,7 @@ sinais:
     categoria: investimento
     janela_dias: 180
     peso: 20
-    como_detectar: "Dado de investimento da empresa no Clay ou notícia com link; citar só o fato, sem valores não confirmados."
+    como_detectar: "Dado de investimento da empresa no Clay ou notícia com link; citar só o fato, sem valores nêo confirmados."
     fonte_obrigatoria: true
 
   - id: mudanca_preco
@@ -58,11 +58,11 @@ sinais:
     categoria: preco
     janela_dias: 60
     peso: 15
-    como_detectar: "Agente de IA comparando a página de preços atual com versão anterior (arquivo/cache); exigir as duas datas."
+    como_detectar: "Agente de IA comparando a página de preços atual com versêo anterior (arquivo/cache); exigir as duas datas."
     fonte_obrigatoria: true
 
   - id: expansao_regional
-    nome: "Abriu escritório ou operação em nova cidade/país"
+    nome: "Abriu escritório ou operaçêo em nova cidade/país"
     categoria: expansao
     janela_dias: 120
     peso: 15
@@ -71,4 +71,4 @@ sinais:
 
 # Regra única de "empresa com sinal" (usada no CLAUDE.md e nos prompts):
 #   soma dos pesos dos sinais ativos >= 30  → buscar decisor
-#   soma < 30                               → não gastar crédito com pessoa; reavaliar no mês seguinte
+#   soma < 30                               → nêo gastar crédito com pessoa; reavaliar no mês seguinte

@@ -16,12 +16,12 @@
 ## Para quem vendemos (ICP — perfil de cliente ideal)
 - Setor:
 - Tamanho (funcionários):
-- País / região:
+- País / regiêo:
 - Cargo de quem decide:
 - Cargo de quem usa:
 
-## Para quem NÃO vendemos
-<!-- Setores, tamanhos ou situações que não são fit. Ajuda o agente a descartar empresas. -->
+## Para quem NêO vendemos
+<!-- Setores, tamanhos ou situações que nêo sêo fit. Ajuda o agente a descartar empresas. -->
 
 ## Por que agora (os sinais que importam para nós)
 <!-- Que acontecimento numa empresa indica que ela precisa de você? Liste e copie para sinais.yaml. -->

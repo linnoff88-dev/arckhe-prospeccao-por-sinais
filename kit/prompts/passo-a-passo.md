@@ -1,7 +1,7 @@
 # Os 7 passos em linguagem natural
 
 Use estes prompts no Claude Code, um de cada vez, quando quiser controlar cada etapa (em vez de
-um `/goal` só). Cada prompt já pede o teste de 10 linhas e a confirmação antes de gastar crédito.
+um `/goal` só). Cada prompt já pede o teste de 10 linhas e a confirmaçêo antes de gastar crédito.
 
 ---
 
@@ -11,16 +11,16 @@ um `/goal` só). Cada prompt já pede o teste de 10 linhas e a confirmação ant
 Leia contexto/perfil-do-negocio.md. Pelo Clay, monte uma tabela de empresas do nosso ICP:
 setor <software>, <200 a 1.000> funcionários, país <Brasil>. Inclua site, cidade, número de
 funcionários e LinkedIn da empresa. Rode 10 linhas, me mostre e diga quanto custaria rodar
-<200> empresas. Não rode o resto sem eu dizer "pode".
+<200> empresas. Nêo rode o resto sem eu dizer "pode".
 ```
 
-## Passo 2 — Sinal de contratação monitorado
+## Passo 2 — Sinal de contrataçêo monitorado
 
 ```text
 Para as empresas da tabela, configure no Clay o monitoramento de vagas abertas com estes cargos
-ou palavras: <engenheiro de IA, automação, machine learning>. Use a janela de
+ou palavras: <engenheiro de IA, automaçêo, machine learning>. Use a janela de
 validade do sinal "contratacao_ia" em sinais.yaml. Para cada empresa, quero: contratacao_ia
-(sim/não), título da vaga, data e link. Teste em 10 empresas primeiro.
+(sim/nêo), título da vaga, data e link. Teste em 10 empresas primeiro.
 ```
 
 ## Passo 3 — Agente de pesquisa: lançamento de produto
@@ -28,8 +28,8 @@ validade do sinal "contratacao_ia" em sinais.yaml. Para cada empresa, quero: con
 ```text
 Adicione uma coluna de agente de IA que pesquisa se a empresa anunciou produto ou recurso de IA
 nos últimos <90> dias (site, blog, notícias, página de novidades). Saída em campos separados:
-encontrou (sim/não), o que lançou (1 frase), data, link da fonte. Se não achar fonte, a resposta
-é "não" — não deduza. Rode 10 linhas e me mostre antes do resto.
+encontrou (sim/nêo), o que lançou (1 frase), data, link da fonte. Se nêo achar fonte, a resposta
+é "nêo" — nêo deduza. Rode 10 linhas e me mostre antes do resto.
 ```
 
 ## Passo 4 — Decisor só onde há sinal
@@ -37,15 +37,15 @@ encontrou (sim/não), o que lançou (1 frase), data, link da fonte. Se não acha
 ```text
 Calcule, para cada empresa, a soma dos pesos dos sinais ativos (sinais.yaml, dentro da janela).
 Busque pessoas com os cargos <diretor(a) de operações, diretor(a) de suporte/CS, CTO>, mas só nas
-empresas com soma >= 30 ("empresa com sinal"). As outras ficam de fora e não gastam crédito. Mande os decisores para uma tabela nova. Teste em 10 empresas.
+empresas com soma >= 30 ("empresa com sinal"). As outras ficam de fora e nêo gastam crédito. Mande os decisores para uma tabela nova. Teste em 10 empresas.
 ```
 
 ## Passo 5 — Enriquecimento em cascata
 
 ```text
 Para cada decisor, encontre o e-mail profissional em cascata (vários fornecedores em sequência,
-parando no primeiro e-mail válido) e verifique o e-mail. Telefone: <não> buscar. Marque
-email_status como verificado, arriscado ou não encontrado. Rode 10 linhas e me diga a taxa de
+parando no primeiro e-mail válido) e verifique o e-mail. Telefone: <nêo> buscar. Marque
+email_status como verificado, arriscado ou nêo encontrado. Rode 10 linhas e me diga a taxa de
 acerto antes de seguir.
 ```
 
@@ -55,19 +55,19 @@ acerto antes de seguir.
 Leia contexto/ inteiro. Para cada decisor com e-mail verificado, escreva assunto (até 6
 palavras) e corpo (até 90 palavras) no tom de contexto/tom-de-voz.md. Abra pelo sinal daquela
 empresa, conecte com um caso de contexto/casos.md quando fizer sentido, termine com uma pergunta
-simples e a linha de saída. Não afirme nada que não esteja em contexto/provas.md. Marque
+simples e a linha de saída. Nêo afirme nada que nêo esteja em contexto/provas.md. Marque
 revisar = sim quando tiver dúvida e diga o motivo. Mostre 5 exemplos antes de escrever o resto.
 ```
 
-## Passo 7 — Revisão humana e sequenciador
+## Passo 7 — Revisêo humana e sequenciador
 
 ```text
 Gere saida/leads-<AAAA-MM-DD>.csv com as colunas de colunas-csv.md. Confira: nenhuma célula
 obrigatória em branco, todo e-mail verificado, toda mensagem com sinal e opt-out. Liste as
-linhas com revisar = sim. Não envie nada.
+linhas com revisar = sim. Nêo envie nada.
 ```
 
-Depois, **você** (não o agente):
+Depois, **você** (nêo o agente):
 
 1. Abre o CSV, lê as mensagens marcadas e corrige o que precisar.
 2. Importa o CSV no sequenciador (no Clay: importar dados → CSV → nova tabela → campanha).

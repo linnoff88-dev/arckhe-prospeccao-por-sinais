@@ -1,4 +1,4 @@
-﻿# ðŸ“¡ ProspecÃ§Ã£o por Sinais
+ï»¿# ê°Å¸âÂ¡ ProspecêÂ§êÂ£o por Sinais
 
 <div align="center">
   <img src="capa/logo.svg" alt="Arckhé AI" height="48" />
@@ -6,78 +6,78 @@
 </div>
 
 
-[![ProspecÃ§Ã£o por Sinais](guia/assets/banner.jpg)](https://inematds.github.io/prospeccao-por-sinais/guia/)
+[![ProspecêÂ§êÂ£o por Sinais](guia/assets/banner.jpg)](https://inematds.github.io/prospeccao-por-sinais/guia/)
 
-**ðŸ‡§ðŸ‡· [PortuguÃªs](README.md) Â· ðŸ‡ºðŸ‡¸ [English](README.en.md) Â· ðŸ‡ªðŸ‡¸ [EspaÃ±ol](README.es.md)**
+**ê°Å¸â¡Â§ê°Å¸â¡Â· [PortuguêÂªs](README.md) êÂ· ê°Å¸â¡Âºê°Å¸â¡Â¸ [English](README.en.md) êÂ· ê°Å¸â¡Âªê°Å¸â¡Â¸ [EspaêÂ±ol](README.es.md)**
 
-## O que Ã©
+## O que êÂ©
 
-Este Ã© um kit gratuito para quem vende para empresas e quer prospectar sem disparar e-mail para lista fria. A ideia Ã© procurar **sinais**, ou seja, acontecimentos pÃºblicos que mostram que uma empresa pode precisar de vocÃª agora (uma vaga aberta, um produto lanÃ§ado, um diretor novo), e sÃ³ entÃ£o achar a pessoa que decide e escrever uma mensagem que cita esse sinal. O Claude Code faz o trabalho pesado usando o Clay (uma plataforma de dados de empresas e contatos) e entrega uma planilha para vocÃª revisar. VocÃª precisa do Claude Code, de uma conta no Clay (tem plano grÃ¡tis e teste) e de uma tarde para preencher o contexto do seu negÃ³cio.
+Este êÂ© um kit gratuito para quem vende para empresas e quer prospectar sem disparar e-mail para lista fria. A ideia êÂ© procurar **sinais**, ou seja, acontecimentos pêÂºblicos que mostram que uma empresa pode precisar de vocêÂª agora (uma vaga aberta, um produto lanêÂ§ado, um diretor novo), e sêÂ³ entêÂ£o achar a pessoa que decide e escrever uma mensagem que cita esse sinal. O Claude Code faz o trabalho pesado usando o Clay (uma plataforma de dados de empresas e contatos) e entrega uma planilha para vocêÂª revisar. VocêÂª precisa do Claude Code, de uma conta no Clay (tem plano grêÂ¡tis e teste) e de uma tarde para preencher o contexto do seu negêÂ³cio.
 
-## ðŸ“– Guia de uso
+## ê°Å¸ââ Guia de uso
 
 Guia completo (landing + passo a passo): **https://inematds.github.io/prospeccao-por-sinais/guia/**
 
-## Antes de comeÃ§ar
+## Antes de comeêÂ§ar
 
-- **Claude Code** â‰¥ 2.1.91 (precisa de assinatura paga do Claude): `curl -fsSL https://claude.ai/install.sh | bash` (Mac/Linux), `irm https://claude.ai/install.ps1 | iex` (Windows) ou `npm install -g @anthropic-ai/claude-code` â€” docs: https://docs.claude.com/en/docs/claude-code/overview
-- **Conta no Clay** (grÃ¡tis ou teste de 14 dias).
-- **git** (ou baixe o [.zip](https://github.com/inematds/prospeccao-por-sinais/archive/refs/heads/main.zip)) e, sÃ³ para a skill opcional de sinais, **Node.js** (`npx`).
+- **Claude Code** ê¢â°Â¥ 2.1.91 (precisa de assinatura paga do Claude): `curl -fsSL https://claude.ai/install.sh | bash` (Mac/Linux), `irm https://claude.ai/install.ps1 | iex` (Windows) ou `npm install -g @anthropic-ai/claude-code` ê¢â¬â docs: https://docs.claude.com/en/docs/claude-code/overview
+- **Conta no Clay** (grêÂ¡tis ou teste de 14 dias).
+- **git** (ou baixe o [.zip](https://github.com/inematds/prospeccao-por-sinais/archive/refs/heads/main.zip)) e, sêÂ³ para a skill opcional de sinais, **Node.js** (`npx`).
 
-## O processo, do inÃ­cio ao fim
+## O processo, do inêÂ­cio ao fim
 
-Quem faz: ðŸ§  vocÃª no Claude Code Â· âš™ï¸ Clay/script Â· ðŸ¤– agente (Claude Code trabalhando sozinho)
+Quem faz: ê°Å¸Â§Â  vocêÂª no Claude Code êÂ· ê¢Å¡â¢ê¯Â¸Â Clay/script êÂ· ê°Å¸Â¤â agente (Claude Code trabalhando sozinho)
 
 | # | Passo | Comando | Quem |
 |---|-------|---------|------|
-| 1 | Baixar o kit e abrir o Claude Code na pasta | `git clone https://github.com/inematds/prospeccao-por-sinais.git` Â· `cp -r prospeccao-por-sinais/kit ~/minha-prospeccao` Â· `cd ~/minha-prospeccao` Â· `claude` | ðŸ§  |
-| 2 | Instalar o plugin do Clay (Claude Code â‰¥ 2.1.91) | `/plugin marketplace add clay-run/agent-plugins` Â· `/plugin install clay@clay-plugins` Â· "Rode a skill clay:setup" | ðŸ§  |
-| 3 | Preencher o contexto do negÃ³cio | editar `contexto/*.md` (modelo em `contexto/exemplo/`) | ðŸ§  |
-| 4 | Definir os sinais | editar `sinais.yaml` Â· opcional: `npx skills add clay-run/clay-skill-creator --skill customer-signal-generator` | ðŸ§  + ðŸ¤– |
-| 5 | ICP: lista de empresas (10 linhas primeiro) | Passo 1 de `prompts/passo-a-passo.md` | ðŸ¤– + âš™ï¸ |
-| 6 | Sinal de contrataÃ§Ã£o monitorado | Passo 2 | ðŸ¤– + âš™ï¸ |
-| 7 | Agente de pesquisa (lanÃ§amento de produto) | Passo 3 | ðŸ¤– + âš™ï¸ |
-| 8 | Decisor sÃ³ onde hÃ¡ sinal (condiÃ§Ã£o de execuÃ§Ã£o: soma dos pesos dos sinais ativos â‰¥ 30) | Passo 4 | ðŸ¤– + âš™ï¸ |
-| 9 | E-mail em cascata + verificaÃ§Ã£o | Passo 5 | âš™ï¸ |
-| 10 | Mensagem com contexto (assunto + corpo citando o sinal) | Passo 6 â€” ou tudo de uma vez com `/goal` (`prompts/goal-prospeccao.md`) | ðŸ¤– |
-| 11 | CSV final para revisÃ£o | `saida/leads-AAAA-MM-DD.csv` (colunas em `colunas-csv.md`) | ðŸ¤– |
-| 12 | RevisÃ£o humana | ler as linhas com `revisar = sim`, corrigir | ðŸ§  |
-| 13 | Importar no sequenciador e enviar devagar | importar CSV â†’ campanha; domÃ­nio secundÃ¡rio aquecido, poucos envios/dia, spam < 0,3% | ðŸ§  + âš™ï¸ |
-| 14 | SupressÃ£o | quem pediu para sair vai para `supressao.csv` no mesmo dia | ðŸ§  |
+| 1 | Baixar o kit e abrir o Claude Code na pasta | `git clone https://github.com/inematds/prospeccao-por-sinais.git` êÂ· `cp -r prospeccao-por-sinais/kit ~/minha-prospeccao` êÂ· `cd ~/minha-prospeccao` êÂ· `claude` | ê°Å¸Â§Â  |
+| 2 | Instalar o plugin do Clay (Claude Code ê¢â°Â¥ 2.1.91) | `/plugin marketplace add clay-run/agent-plugins` êÂ· `/plugin install clay@clay-plugins` êÂ· "Rode a skill clay:setup" | ê°Å¸Â§Â  |
+| 3 | Preencher o contexto do negêÂ³cio | editar `contexto/*.md` (modelo em `contexto/exemplo/`) | ê°Å¸Â§Â  |
+| 4 | Definir os sinais | editar `sinais.yaml` êÂ· opcional: `npx skills add clay-run/clay-skill-creator --skill customer-signal-generator` | ê°Å¸Â§Â  + ê°Å¸Â¤â |
+| 5 | ICP: lista de empresas (10 linhas primeiro) | Passo 1 de `prompts/passo-a-passo.md` | ê°Å¸Â¤â + ê¢Å¡â¢ê¯Â¸Â |
+| 6 | Sinal de contrataêÂ§êÂ£o monitorado | Passo 2 | ê°Å¸Â¤â + ê¢Å¡â¢ê¯Â¸Â |
+| 7 | Agente de pesquisa (lanêÂ§amento de produto) | Passo 3 | ê°Å¸Â¤â + ê¢Å¡â¢ê¯Â¸Â |
+| 8 | Decisor sêÂ³ onde hêÂ¡ sinal (condiêÂ§êÂ£o de execuêÂ§êÂ£o: soma dos pesos dos sinais ativos ê¢â°Â¥ 30) | Passo 4 | ê°Å¸Â¤â + ê¢Å¡â¢ê¯Â¸Â |
+| 9 | E-mail em cascata + verificaêÂ§êÂ£o | Passo 5 | ê¢Å¡â¢ê¯Â¸Â |
+| 10 | Mensagem com contexto (assunto + corpo citando o sinal) | Passo 6 ê¢â¬â ou tudo de uma vez com `/goal` (`prompts/goal-prospeccao.md`) | ê°Å¸Â¤â |
+| 11 | CSV final para revisêÂ£o | `saida/leads-AAAA-MM-DD.csv` (colunas em `colunas-csv.md`) | ê°Å¸Â¤â |
+| 12 | RevisêÂ£o humana | ler as linhas com `revisar = sim`, corrigir | ê°Å¸Â§Â  |
+| 13 | Importar no sequenciador e enviar devagar | importar CSV ê¢â â campanha; domêÂ­nio secundêÂ¡rio aquecido, poucos envios/dia, spam < 0,3% | ê°Å¸Â§Â  + ê¢Å¡â¢ê¯Â¸Â |
+| 14 | SupressêÂ£o | quem pediu para sair vai para `supressao.csv` no mesmo dia | ê°Å¸Â§Â  |
 
-Regra de ouro (estÃ¡ no `kit/CLAUDE.md`): o agente **nunca gasta crÃ©dito sem pedir**, **roda 10 linhas antes** e **nunca envia nada**.
+Regra de ouro (estêÂ¡ no `kit/CLAUDE.md`): o agente **nunca gasta crêÂ©dito sem pedir**, **roda 10 linhas antes** e **nunca envia nada**.
 
 ## O kit
 
 ```
 kit/
-â”œâ”€â”€ CLAUDE.md                 regras do agente (crÃ©dito, 10 linhas, revisÃ£o, opt-out, LGPD)
-â”œâ”€â”€ contexto/                 6 modelos: perfil-do-negocio, oferta, casos, provas, faq, tom-de-voz
-â”‚   â””â”€â”€ exemplo/              os mesmos 6, preenchidos com uma empresa FICTÃCIA
-â”œâ”€â”€ prompts/
-â”‚   â”œâ”€â”€ goal-prospeccao.md    prompt para /goal com linha de chegada verificÃ¡vel
-â”‚   â””â”€â”€ passo-a-passo.md      um prompt por passo do fluxo
-â”œâ”€â”€ sinais.yaml               sinais de exemplo com janela de validade e peso
-â”œâ”€â”€ colunas-csv.md            colunas da planilha de saÃ­da
-â”œâ”€â”€ checklist-lgpd.md         checklist prÃ¡tico (nÃ£o Ã© parecer jurÃ­dico)
-â””â”€â”€ supressao.csv             quem pediu para sair
+ê¢âÅê¢ââ¬ê¢ââ¬ CLAUDE.md                 regras do agente (crêÂ©dito, 10 linhas, revisêÂ£o, opt-out, LGPD)
+ê¢âÅê¢ââ¬ê¢ââ¬ contexto/                 6 modelos: perfil-do-negocio, oferta, casos, provas, faq, tom-de-voz
+ê¢ââ   ê¢ââê¢ââ¬ê¢ââ¬ exemplo/              os mesmos 6, preenchidos com uma empresa FICTêÂCIA
+ê¢âÅê¢ââ¬ê¢ââ¬ prompts/
+ê¢ââ   ê¢âÅê¢ââ¬ê¢ââ¬ goal-prospeccao.md    prompt para /goal com linha de chegada verificêÂ¡vel
+ê¢ââ   ê¢ââê¢ââ¬ê¢ââ¬ passo-a-passo.md      um prompt por passo do fluxo
+ê¢âÅê¢ââ¬ê¢ââ¬ sinais.yaml               sinais de exemplo com janela de validade e peso
+ê¢âÅê¢ââ¬ê¢ââ¬ colunas-csv.md            colunas da planilha de saêÂ­da
+ê¢âÅê¢ââ¬ê¢ââ¬ checklist-lgpd.md         checklist prêÂ¡tico (nêÂ£o êÂ© parecer jurêÂ­dico)
+ê¢ââê¢ââ¬ê¢ââ¬ supressao.csv             quem pediu para sair
 ```
 
-## Custos (documentaÃ§Ã£o pÃºblica do Clay, conferido em 01/11/2026)
+## Custos (documentaêÂ§êÂ£o pêÂºblica do Clay, conferido em 01/11/2026)
 
-- GrÃ¡tis: 100 crÃ©ditos/mÃªs. Teste de 14 dias: 1.000 crÃ©ditos. Plano Launch: a partir de US$ 185/mÃªs (2.500 crÃ©ditos + 15.000 aÃ§Ãµes).
-- Na cascata, os fornecedores padrÃ£o de e-mail e celular devolvem o crÃ©dito quando nÃ£o acham; celular nÃ£o estÃ¡ disponÃ­vel no grÃ¡tis nem no teste.
+- GrêÂ¡tis: 100 crêÂ©ditos/mêÂªs. Teste de 14 dias: 1.000 crêÂ©ditos. Plano Launch: a partir de US$ 185/mêÂªs (2.500 crêÂ©ditos + 15.000 aêÂ§êÂµes).
+- Na cascata, os fornecedores padrêÂ£o de e-mail e celular devolvem o crêÂ©dito quando nêÂ£o acham; celular nêÂ£o estêÂ¡ disponêÂ­vel no grêÂ¡tis nem no teste.
 - Fonte: https://github.com/clay-run/public-docs
 
-## ReferÃªncias
+## ReferêÂªncias
 
 - Plugin do Clay para agentes: https://github.com/clay-run/agent-plugins
-- Gmail â€” diretrizes para remetentes: https://support.google.com/a/answer/81126?hl=pt-BR
-- LGPD (Lei 13.709/2018): https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm Â· ANPD: https://www.gov.br/anpd
+- Gmail ê¢â¬â diretrizes para remetentes: https://support.google.com/a/answer/81126?hl=pt-BR
+- LGPD (Lei 13.709/2018): https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm êÂ· ANPD: https://www.gov.br/anpd
 
 ---
 
-ConteÃºdo aberto e gratuito do [INEMA.CLUB](https://inema.club).
+ConteêÂºdo aberto e gratuito do [INEMA.CLUB](https://inema.club).
 
 ---
 

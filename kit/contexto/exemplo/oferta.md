@@ -14,6 +14,6 @@
 ## Primeiro passo que oferecemos
 Conversa de 15 minutos para olhar uma amostra de 50 chamados e dizer se o piloto faz sentido.
 
-## O que não prometemos
-- Não prometemos reduzir equipe.
-- Não prometemos número de economia antes de ver os dados do cliente.
+## O que nêo prometemos
+- Nêo prometemos reduzir equipe.
+- Nêo prometemos número de economia antes de ver os dados do cliente.
