@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Signal-Based Prospecting — B2B prospecting with Claude Code and Clay</title>
 <meta name="description" content="A kit and guide to finding companies based on the right signal: Claude Code orchestrates, Clay provides the data, and you review it. Includes context templates, prompts, sinais.yaml, and an LGPD checklist.">
-<meta property="og:title" content="Signal-Based Prospecting — INEMA.CLUB">
+<meta property="og:title" content="Signal-Based Prospecting — ARCKHÉ AI">
 <meta property="og:description" content="Reach out only when a company is ready to buy: signal-based B2B prospecting with Claude Code and Clay.">
-<meta property="og:image" content="https://inematds.github.io/prospeccao-por-sinais/capa/capa.png">
-<link rel="alter&#110;ate" hreflang="pt-BR" href="https://inematds.github.io/prospeccao-por-sinais/guia/">
-<link rel="alter&#110;ate" hreflang="en" href="https://inematds.github.io/prospeccao-por-sinais/guia/en/">
-<link rel="alter&#110;ate" hreflang="es" href="https://inematds.github.io/prospeccao-por-sinais/guia/es/">
+<meta property="og:image" content="https://linnoff88-dev.github.io/arckhe-/capa/capa.png">
+<link rel="alter&#110;ate" hreflang="pt-BR" href="https://linnoff88-dev.github.io/arckhe-/guia/">
+<link rel="alter&#110;ate" hreflang="en" href="https://linnoff88-dev.github.io/arckhe-/guia/en/">
+<link rel="alter&#110;ate" hreflang="es" href="https://linnoff88-dev.github.io/arckhe-/guia/es/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -46,8 +46,8 @@
   nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
   nav .brand .emoji{font-size:1.25rem}
   nav .sep{color:var(--mut);opacity:.45}
-  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
-  nav .inema:hover{filter:brightness(1.15)}
+  nav .ARCKHÉ{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .ARCKHÉ:hover{filter:brightness(1.15)}
   nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
   nav .pro:hover{filter:brightness(1.15)}
   nav .clubpro{display:inline-flex;align-items:center;gap:6px}
@@ -119,9 +119,9 @@
   <a class="brand" href="#top"><span class="emoji">📡</span> Signal-Based Prospecting</a>
   <span class="sep">|</span>
   <span class="clubpro">
-    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <a class="ARCKHÉ" href="https://ARCKHÉ AI" target="_blank" rel="noopener">ARCKHÉ AI</a>
     <span class="sep">-</span>
-    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+    <a class="pro" href="https://ARCKHÉ.pro" target="_blank" rel="noopener">PRO</a>
   </span>
   <div class="links">
     <a class="sec" href="#fluxo">How it works</a>
@@ -131,7 +131,7 @@
     <a class="sec" href="#kit">Kit</a>
     <span class="lang"><a href="../">PT</a><a class="on" href="./">EN</a><a href="../es/">ES</a></span>
     <button class="tgl" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌙</button>
-    <a class="btn" href="https://github.com/inematds/prospeccao-por-sinais" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn" href="https://github.com/linnoff88-dev/prospeccao-por-sinais" target="_blank" rel="noopener">GitHub</a>
   </div>
 </div></nav>
 
@@ -236,11 +236,11 @@ kit/contexto/</pre></div>
   <div class="step"><div class="b">1</div><div>
     <h3>Download the kit and open Claude Code in the folder <span class="who">🧠 you</span></h3>
     <p>The kit becomes your prospecting project folder. Its <code>CLAUDE.md</code> file tells Claude Code how to behave (don’t spend credits without asking, run 10 rows first, never send anything).</p>
-<pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/prospeccao-por-sinais.git</span>
+<pre><span class="k">git clone</span> <span class="s">https://github.com/linnoff88-dev/prospeccao-por-sinais.git</span>
 <span class="k">cp -r</span> prospeccao-por-sinais/kit ~/minha-prospeccao
 <span class="k">cd</span> ~/minha-prospeccao
 <span class="k">claude</span></pre>
-    <p>No git? <a href="https://github.com/inematds/prospeccao-por-sinais/archive/refs/heads/main.zip">Download the .zip</a>, unzip it, copy the <code>kit</code> folder wherever you like, open a terminal in that folder, and type <code>claude</code>.</p>
+    <p>No git? <a href="https://github.com/linnoff88-dev/prospeccao-por-sinais/archive/refs/heads/main.zip">Download the .zip</a>, unzip it, copy the <code>kit</code> folder wherever you like, open a terminal in that folder, and type <code>claude</code>.</p>
   </div></div>
 
   <div class="step"><div class="b">2</div><div>
@@ -385,23 +385,23 @@ spam rate below 0.3% (Gmail sender requirement)</pre>
     <tr><td><code>supressao.csv</code></td><td>List of people who asked to opt out (starts empty).</td></tr>
   </table></div>
   <div class="cta" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px">
-    <a class="btn" href="https://github.com/inematds/prospeccao-por-sinais/archive/refs/heads/main.zip">Download the kit (.zip)</a>
-    <a class="btn ghost" href="https://github.com/inematds/prospeccao-por-sinais/tree/main/kit" target="_blank" rel="noopener">View the kit/ folder on GitHub</a>
+    <a class="btn" href="https://github.com/linnoff88-dev/prospeccao-por-sinais/archive/refs/heads/main.zip">Download the kit (.zip)</a>
+    <a class="btn ghost" href="https://github.com/linnoff88-dev/prospeccao-por-sinais/tree/main/kit" target="_blank" rel="noopener">View the kit/ folder on GitHub</a>
   </div>
 </div></section>
 
 <section id="videos"><div class="wrap">
   <span class="chip">Videos</span>
   <h2>See the workflow explained</h2>
-  <div style="position:relative;aspect-ratio:16/9;max-width:860px;margin:18px auto 10px;border-radius:14px;overflow:hidden;border:1px solid var(--line,#272730)"><iframe src="https://www.youtube-nocookie.com/embed/mLXPnDLAcRI" title="Prospecçêo por sinais" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div><p style="text-align:center">The 7 steps in 2 min 48 s: from the ideal profile to sending, with Claude Code + Clay (in Portuguese).<br><a href="https://www.instagram.com/inema.tds/">Short version (reel) on Instagram and TikTok (in Portuguese): @inema.tds</a></p>
+  <div style="position:relative;aspect-ratio:16/9;max-width:860px;margin:18px auto 10px;border-radius:14px;overflow:hidden;border:1px solid var(--line,#272730)"><iframe src="https://www.youtube-nocookie.com/embed/mLXPnDLAcRI" title="Prospecçêo por sinais" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div><p style="text-align:center">The 7 steps in 2 min 48 s: from the ideal profile to sending, with Claude Code + Clay (in Portuguese).<br><a href="https://www.instagram.com/ARCKHÉ.tds/">Short version (reel) on Instagram and TikTok (in Portuguese): @ARCKHÉ.tds</a></p>
 </div></section>
 
 <footer>
   <div class="wrap">
     <div class="pill">Claude Code</div><div class="pill">Clay</div><div class="pill">CSV</div><div class="pill">LGPD</div>
     <p style="margin-top:18px">Signal-Based Prospecting · open and free kit ·
-      <a href="https://github.com/inematds/prospeccao-por-sinais">inematds/prospeccao-por-sinais</a> ·
-      <a href="https://inema.club">INEMA.CLUB</a></p>
+      <a href="https://github.com/linnoff88-dev/prospeccao-por-sinais">linnoff88-dev/prospeccao-por-sinais</a> ·
+      <a href="https://ARCKHÉ AI">ARCKHÉ AI</a></p>
   </div>
 </footer>
 

@@ -1,6 +1,6 @@
 # 📡 Signal-Based Prospecting
 
-[![Signal-Based Prospecting](guia/assets/banner-en.jpg)](https://inematds.github.io/prospeccao-por-sinais/guia/en/)
+[![Signal-Based Prospecting](guia/assets/banner-en.jpg)](https://linnoff88-dev.github.io/arckhe-/guia/en/)
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 
@@ -10,13 +10,13 @@ This is a free kit for people who sell to businesses and want to prospect withou
 
 ## 📖 User guide
 
-Full guide (landing page + step-by-step instructions): **https://inematds.github.io/prospeccao-por-sinais/guia/en/**
+Full guide (landing page + step-by-step instructions): **https://linnoff88-dev.github.io/arckhe-/guia/en/**
 
 ## Before you start
 
 - **Claude Code** ≥ 2.1.91 (requires a paid Claude subscription): `curl -fsSL https://claude.ai/install.sh | bash` (Mac/Linux), `irm https://claude.ai/install.ps1 | iex` (Windows) or `npm install -g @anthropic-ai/claude-code` — docs: https://docs.claude.com/en/docs/claude-code/overview
 - **A Clay account** (free plan or 14-day trial).
-- **git** (or download the [.zip](https://github.com/inematds/prospeccao-por-sinais/archive/refs/heads/main.zip)) and, only for the optional signals skill, **Node.js** (`npx`).
+- **git** (or download the [.zip](https://github.com/linnoff88-dev/prospeccao-por-sinais/archive/refs/heads/main.zip)) and, only for the optional signals skill, **Node.js** (`npx`).
 
 ## The process, from start to finish
 
@@ -24,7 +24,7 @@ Who does what: 🧠 you in Claude Code · ⚙️ Clay/script · 🤖 agent (Clau
 
 | # | Step | Command | Who |
 |---|-------|---------|------|
-| 1 | Download the kit and open Claude Code in the folder | `git clone https://github.com/inematds/prospeccao-por-sinais.git` · `cp -r prospeccao-por-sinais/kit ~/minha-prospeccao` · `cd ~/minha-prospeccao` · `claude` | 🧠 |
+| 1 | Download the kit and open Claude Code in the folder | `git clone https://github.com/linnoff88-dev/prospeccao-por-sinais.git` · `cp -r prospeccao-por-sinais/kit ~/minha-prospeccao` · `cd ~/minha-prospeccao` · `claude` | 🧠 |
 | 2 | Install the Clay plugin (Claude Code ≥ 2.1.91) | `/plugin marketplace add clay-run/agent-plugins` · `/plugin install clay@clay-plugins` · "Run the clay:setup skill" | 🧠 |
 | 3 | Fill in your business context | Edit `contexto/*.md` (template in `contexto/exemplo/`) | 🧠 |
 | 4 | Define the signals | Edit `sinais.yaml` · optional: `npx skills add clay-run/clay-skill-creator --skill customer-signal-generator` | 🧠 + 🤖 |
@@ -73,4 +73,4 @@ kit/
 
 ---
 
-Open and free content from [INEMA.CLUB](https://inema.club).
+Open and free content from [ARCKHÉ AI](https://ARCKHÉ AI).
